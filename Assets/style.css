@@ -14,7 +14,18 @@ body{
     background:linear-gradient(to right, rgb(40, 40, 197) ,rgb(11, 8, 80));
     color: white;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+#label-city{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#input-city{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: 40px;
 }

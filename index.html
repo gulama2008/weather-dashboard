@@ -13,13 +13,30 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header>
-        <h1 class="container-fluid" id="header">Weather Dashboard</h1>
+    <header class="container">
+        <div class="row">
+            <h1 class="col-12" id="header">Weather Dashboard</h1>
+        </div>
+        
     </header>
     <main class="container">
         <div class="row">
-            <div class="col-3">aaa</div>
-            <div class="col-9">bbb</div>
+            <div class="col-3">
+                <label for="input-city" id="label-city">Search for a City:</label>
+                <div class="d-grid col-12">
+                    <input type="text " id="input-city">
+                </div>
+                <div class="d-grid col-12 mx-auto">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </div>
+                <hr>
+            </div>
+
+            <div class="col-8">
+                <div></div>
+                <div>5-Day Forecast:</div>
+                <div></div>
+            </div>
         </div>
     </main>
 
