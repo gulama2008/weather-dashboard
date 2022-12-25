@@ -29,3 +29,18 @@ body{
     margin-bottom: 10px;
     height: 40px;
 }
+
+#current-weather{
+    border: 1px black solid;
+}
+
+#current-weather-city{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#forecast-title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
