@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+}
+
+#header{
+    /* margin-bottom: 10px; */
+    text-align: center;
+    background:linear-gradient(to right, rgb(40, 40, 197) ,rgb(11, 8, 80));
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
