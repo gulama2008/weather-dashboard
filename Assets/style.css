@@ -44,3 +44,20 @@ body{
     font-weight: bold;
     margin-top: 10px;
 }
+
+#five-days-forecast-weather{
+    background-color: pink;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast-weather{
+    padding: 5px;
+    background-color: rgb(19, 42, 52);
+    color: white;
+}
+
+.forecast-weather-date{
+    font-size: 15px;
+    font-weight:bold;
+}
