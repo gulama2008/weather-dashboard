@@ -12,9 +12,6 @@ var btn = document.querySelector('#search-button');
 var lat;
 var lon;
 
-// var currentWeatherIcon = document.createElement("img");
-// currentWeather.appendChild(currentWeatherIcon);
-
 function render() {    
     fetch(
       getLocationUrl()
