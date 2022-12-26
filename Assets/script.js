@@ -1,6 +1,7 @@
 var currentWeather = document.querySelector('#current-weather');
 var fiveDaysForecastWeather = document.querySelector('#five-days-forecast-weather');
 var currentWeatherCity = document.querySelector('#current-weather-city');
+var currentWeatherIcon=document.querySelector('#current-weather-icon')
 var currentWeatherTemp = document.querySelector('#current-weather-temp');
 var currentWeatherWind = document.querySelector('#current-weather-wind');
 var currentWeatherHumidity = document.querySelector('#current-weather-humidity');
@@ -10,6 +11,9 @@ var inputCity = $('#input-city');
 var btn = document.querySelector('#search-button');
 var lat;
 var lon;
+
+// var currentWeatherIcon = document.createElement("img");
+// currentWeather.appendChild(currentWeatherIcon);
 
 function render() {    
     fetch(
@@ -66,10 +70,8 @@ function render() {
 var getLocationUrl=() => "http://api.openweathermap.org/geo/1.0/direct?q=" + inputCity.val() + "&limit=1&appid=d1b67a2c29e2519a2b26b7d05d8c9464";
 
 function currentWeatherRender(city, date, icon, temp, wind, humidity) { 
-    var currentWeatherIcon = document.createElement('img');
     var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
-    currentWeatherIcon.setAttribute("src", iconUrl);
-    currentWeather.appendChild(currentWeatherIcon);
+    currentWeatherIcon.setAttribute("src", iconUrl);  
     currentWeatherCity.textContent = city + ' (' + date + ')'+' ';
     currentWeatherTemp.textContent = "Temp: " +temp + "℃";
     currentWeatherWind.textContent = 'Wind: '+wind+' MPH';
