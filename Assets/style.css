@@ -30,7 +30,7 @@ body{
     height: 40px;
 }
 
-#current-weather{
+#current-weather-card{
     border: 1px black solid;
 }
 
@@ -47,6 +47,7 @@ body{
 
 #five-days-forecast-weather{
     display: flex;
+    visibility: hidden;
     justify-content: space-between;
 }
 

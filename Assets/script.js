@@ -1,10 +1,9 @@
-var currentWeather = document.querySelector('#current-weatehr');
+var currentWeather = document.querySelector('#current-weather');
 var fiveDaysForecastWeather = document.querySelector('#five-days-forecast-weather');
 var currentWeatherCity = document.querySelector('#current-weather-city');
 var currentWeatherTemp = document.querySelector('#current-weather-temp');
 var currentWeatherWind = document.querySelector('#current-weather-wind');
 var currentWeatherHumidity = document.querySelector('#current-weather-humidity');
-var currentWeatherIcon = document.querySelector('#current-weather-icon');
 var forecastWeather = document.querySelectorAll('.forecast-weather-card')
 var currentDate = dayjs().format("DD/MM/YYYY");;
 var inputCity = $('#input-city');
@@ -12,9 +11,7 @@ var btn = document.querySelector('#search-button');
 var lat;
 var lon;
 
-
-function render() { 
-    
+function render() {    
     fetch(
       getLocationUrl()
     )
@@ -25,18 +22,8 @@ function render() {
             var url = [];
             lat = data[0].lat;
             lon = data[0].lon;
-            var currentWeatherUrl =
-              "https://api.openweathermap.org/data/2.5/weather?lat=" +
-              lat +
-              "&lon=" +
-              lon +
-              "&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
-            var forecastWeatherUrl =
-              "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-              lat +
-              "&lon=" +
-              lon +
-              "&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+            var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+            var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
             url.push(currentWeatherUrl);
             url.push(forecastWeatherUrl);
             return url;
@@ -64,6 +51,7 @@ function render() {
                 })
                 .then(function (data) {
                     console.log(data);
+                    fiveDaysForecastWeather.style.visibility = 'visible';
                     for (var i = 0; i < 5; i++) {
                         var icon = data.list[8 * i].weather[0].icon;
                         var temp = data.list[8 * i].main.temp;
@@ -78,9 +66,10 @@ function render() {
 var getLocationUrl=() => "http://api.openweathermap.org/geo/1.0/direct?q=" + inputCity.val() + "&limit=1&appid=d1b67a2c29e2519a2b26b7d05d8c9464";
 
 function currentWeatherRender(city, date, icon, temp, wind, humidity) { 
+    var currentWeatherIcon = document.createElement('img');
     var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
-    console.log(iconUrl);
-    currentWeatherIcon.setAttribute("src",iconUrl);
+    currentWeatherIcon.setAttribute("src", iconUrl);
+    currentWeather.appendChild(currentWeatherIcon);
     currentWeatherCity.textContent = city + ' (' + date + ')'+' ';
     currentWeatherTemp.textContent = "Temp: " +temp + "℃";
     currentWeatherWind.textContent = 'Wind: '+wind+' MPH';
