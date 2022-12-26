@@ -9,13 +9,35 @@ var forecastWeather = document.querySelectorAll('.forecast-weather-card')
 var currentDate = dayjs().format("DD/MM/YYYY");;
 var inputCity = $('#input-city');
 var btn = document.querySelector('#search-button');
+var searchList = document.querySelector('#search-list');
+var cityArray;
 var lat;
 var lon;
+var input;
 
-function render() {    
-    fetch(
-      getLocationUrl()
-    )
+renderSearchHistory();
+
+function render() {   
+    cityArray = JSON.parse(localStorage.getItem("cityArray"));
+    input = inputCity.val()
+    var isDuplicate = false;
+    if (cityArray == null) {
+        cityArray = []; 
+        saveToLocalStorage(input);
+        createSearchResultBtn(input);
+    } else { 
+        console.log(789);
+        for (var i = 0; i < cityArray.length; i++) {
+          if ((cityArray[i] == input)) {
+            isDuplicate=true;
+          }
+        }
+        if (!isDuplicate) { 
+            saveToLocalStorage(input);
+            createSearchResultBtn(input);
+        }   
+    }
+    fetch(getLocationUrl())
         .then(function (response) { 
             return response.json();
         })
@@ -98,6 +120,34 @@ function forecastWeatherRender(icon, temp, wind, humidity, i) {
     humidityEl.classList.add("forecast-weather-humidity", "forecastInfo");
     humidityEl.textContent = "Humidity: " + humidity + "%";
     forecastWeather[i].appendChild(humidityEl);
+}
+
+function saveToLocalStorage(input) { 
+    cityArray.push(input);
+    localStorage.setItem("cityArray", JSON.stringify(cityArray));
+    console.log(333);
+}
+
+function renderSearchHistory() {
+    cityArray = JSON.parse(localStorage.getItem("cityArray"));
+    if (cityArray) {
+        console.log(111);
+        for (var i = 0; i < cityArray.length; i++) {
+            createSearchResultBtn(cityArray[i]);
+        }
+    } 
+}
+
+function createSearchResultBtn(input) { 
+    console.log(666);
+    var cityBtnContainer = document.createElement("div");
+    cityBtnContainer.classList.add("d-grid", "col-12", "mx-auto");
+    var cityBtn = document.createElement("button");
+    cityBtn.classList.add("btn", "btn-secondary","city-button");
+    cityBtn.setAttribute("type", "button");
+    cityBtn.textContent = input;
+    searchList.appendChild(cityBtnContainer);
+    cityBtnContainer.appendChild(cityBtn);
 }
 
 btn.addEventListener("click", render);
