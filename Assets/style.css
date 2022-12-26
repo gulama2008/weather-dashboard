@@ -46,18 +46,35 @@ body{
 }
 
 #five-days-forecast-weather{
-    background-color: pink;
     display: flex;
     justify-content: space-between;
 }
 
-.forecast-weather{
+.forecast-weather-card{
     padding: 5px;
+    padding-right: 20px;
     background-color: rgb(19, 42, 52);
     color: white;
 }
 
 .forecast-weather-date{
+    margin-bottom: 20px;
     font-size: 15px;
     font-weight:bold;
+}
+
+.card-body-title{
+    display: flex;
+}
+
+#current-weather-icon{
+    width: 40px;
+    padding-bottom: 20px;
+}
+
+.forecastInfo{
+    font-size: 15px;
+    line-height: 5px;
+    font-weight: 100;
+    margin-bottom: 30px;
 }

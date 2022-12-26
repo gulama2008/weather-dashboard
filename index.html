@@ -11,6 +11,8 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -28,7 +30,7 @@
                     <input type="text " id="input-city">
                 </div>
                 <div class="d-grid col-12 mx-auto">
-                    <button class="btn btn-primary" type="button">Search</button>
+                    <button class="btn btn-primary" type="button" id="search-button">Search</button>
                 </div>
                 <hr>
             </div>
@@ -36,48 +38,52 @@
             <div class="col-8">
                 <div id="current-weather">
                     <div class="card-body">
-                        <h5 class="card-title" id="current-weather-city">Card title</h5>
+                        <div class="card-body-title">
+                            <h5 class="card-title" id="current-weather-city">Card title </h5>
+                            <img id="current-weather-icon" src="" alt="weather icon">
+                        </div>
+                        
                         <p class="card-text" id="current-weather-temp"></p>
                         <p class="card-text" id="current-weather-wind"></p>
                         <p class="card-text" id="current-weather-humidity"></p>
                     </div>
                 </div>
                 <div id="forecast-title">5-Day Forecast:</div>
-                <div class="container" id="five-days-forecast-weather">
-                    <div class='forecast-weather' id="day-1">
-                        <h6 class="card-title forecast-weather-date" id="forecast-weather-date-1">Card title</h6>
+                <div id="five-days-forecast-weather">
+                    <div class='forecast-weather-card' id="day-1">
+                        <!-- <h6 class="card-title forecast-weather-date" id="forecast-weather-date-1">Card title</h6>
                         <p class="card-text forecast-weather-icon" id="forecast-weather-icon-1"></p>
                         <p class="card-text forecast-weather-temp" id="forecast-weather-temp-1"></p>
                         <p class="card-text forecast-weather-wind" id="forecast-weather-wind-1"></p>
-                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-1"></p>
+                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-1"></p> -->
                     </div>
-                    <div class='forecast-weather' id="day-2">
-                        <h6 class="card-title forecast-weather-date" id="forecast-weather-date-2">Card title</h6>
+                    <div class='forecast-weather-card' id="day-2">
+                        <!-- <h6 class="card-title forecast-weather-date" id="forecast-weather-date-2">Card title</h6>
                         <p class="card-text forecast-weather-icon" id="forecast-weather-icon-1"></p>
                         <p class="card-text forecast-weather-temp" id="forecast-weather-temp-2"></p>
                         <p class="card-text forecast-weather-wind" id="forecast-weather-wind-2"></p>
-                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-2"></p>
+                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-2"></p> -->
                     </div> 
-                    <div class='forecast-weather' id="day-3">
-                        <h6 class="card-title forecast-weather-date" id="forecast-weather-date-3">Card title</h6>
+                    <div class='forecast-weather-card' id="day-3">
+                        <!-- <h6 class="card-title forecast-weather-date" id="forecast-weather-date-3">Card title</h6>
                         <p class="card-text forecast-weather-icon" id="forecast-weather-icon-1"></p>
                         <p class="card-text forecast-weather-temp" id="forecast-weather-temp-3"></p>
                         <p class="card-text forecast-weather-wind" id="forecast-weather-wind-3"></p>
-                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-3"></p>
+                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-3"></p> -->
                     </div>
-                    <div class='forecast-weather' id="day-4">
-                        <h6 class="card-title forecast-weather-date" id="forecast-weather-date-4">Card title</h6>
+                    <div class='forecast-weather-card' id="day-4">
+                        <!-- <h6 class="card-title forecast-weather-date" id="forecast-weather-date-4">Card title</h6>
                         <p class="card-text forecast-weather-icon" id="forecast-weather-icon-1"></p>
                         <p class="card-text forecast-weather-temp" id="forecast-weather-temp-4"></p>
                         <p class="card-text forecast-weather-wind" id="forecast-weather-wind-4"></p>
-                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-4"></p>
+                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-4"></p> -->
                     </div>
-                    <div class='forecast-weather' id="day-5">
-                        <h6 class="card-title forecast-weather-date" id="forecast-weather-date-5">Card title</h6>
+                    <div class='forecast-weather-card' id="day-5">
+                        <!-- <h6 class="card-title forecast-weather-date" id="forecast-weather-date-5">Card title</h6>
                         <p class="card-text forecast-weather-icon" id="forecast-weather-icon-1"></p>
                         <p class="card-text forecast-weather-temp" id="forecast-weather-temp-5"></p>
                         <p class="card-text forecast-weather-wind" id="forecast-weather-wind-5"></p>
-                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-5"></p>
+                        <p class="card-text forecast-weather-humidity" id="forecast-weather-humidity-5"></p> -->
                     </div>         
                 </div>
             </div>
