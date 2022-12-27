@@ -78,3 +78,10 @@ body{
     font-weight: 100;
     margin-bottom: 30px;
 }
+
+.city-button{
+    margin-top: 10px;
+    color: black;
+    background-color: rgb(188, 188, 188);
+    border: none;
+}
