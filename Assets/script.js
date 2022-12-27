@@ -88,10 +88,8 @@ function weather(locationUrl) {
       })
       .then(function (data) {
         var url = [];
-        lat = data[0].lat;
-        lon = data[0].lon;
-        var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +lat +"&lon=" + lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
-        var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+        var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +data[0].lat +"&lon=" + data[0].lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+        var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +data[0].lat +"&lon=" +data[0].lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
         url.push(currentWeatherUrl);
         url.push(forecastWeatherUrl);
         return url;
@@ -102,13 +100,7 @@ function weather(locationUrl) {
             return response.json();
           })
           .then(function (data) {
-            var city = data.name;
-            var date = currentDate;
-            var icon = data.weather[0].icon;
-            var temp = data.main.temp;
-            var wind = data.wind.speed;
-            var humidity = data.main.humidity;
-            currentWeatherRender(city, date, icon, temp, wind, humidity);
+            currentWeatherRender(data.name, currentDate, data.weather[0].icon, data.main.temp, data.wind.speed, data.main.humidity);
           });
         fetch(data[1])
           .then(function (response) {
