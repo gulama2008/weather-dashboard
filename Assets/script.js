@@ -18,75 +18,12 @@ var input;
 renderSearchHistory();
 
 function render() {   
-    cityArray = JSON.parse(localStorage.getItem("cityArray"));
-    input = inputCity.val()
-    var isDuplicate = false;
-    if (cityArray == null) {
-        cityArray = []; 
-        saveToLocalStorage(input);
-        createSearchResultBtn(input);
-    } else { 
-        console.log(789);
-        for (var i = 0; i < cityArray.length; i++) {
-          if ((cityArray[i] == input)) {
-            isDuplicate=true;
-          }
-        }
-        if (!isDuplicate) { 
-            saveToLocalStorage(input);
-            createSearchResultBtn(input);
-        }   
-    }
-    fetch(getLocationUrl())
-        .then(function (response) { 
-            return response.json();
-        })
-        .then(function (data) { 
-            var url = [];
-            lat = data[0].lat;
-            lon = data[0].lon;
-            var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
-            var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
-            url.push(currentWeatherUrl);
-            url.push(forecastWeatherUrl);
-            return url;
-        })
-        .then(function (data) {
-            fetch(data[0])
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    console.log(data);
-                    var city = data.name;
-                    var date = currentDate;
-                    var icon = data.weather[0].icon;
-                    var temp = data.main.temp;
-                    console.log(temp);
-                    var wind = data.wind.speed;
-                    var humidity = data.main.humidity;
-                    currentWeatherRender(city, date, icon, temp, wind, humidity);
-                })
-            fetch(data[1])
-                .then(function (response) {
-                    console.log(111);
-                    return response.json();
-                })
-                .then(function (data) {
-                    console.log(data);
-                    fiveDaysForecastWeather.style.visibility = 'visible';
-                    for (var i = 0; i < 5; i++) {
-                        var icon = data.list[8 * i].weather[0].icon;
-                        var temp = data.list[8 * i].main.temp;
-                        var wind = data.list[8 * i].wind.speed;
-                        var humidity = data.list[8 * i].main.humidity;
-                        forecastWeatherRender(icon, temp, wind, humidity,i);
-                    }    
-                });
-        })
+    searchHistory();
+    var locationUrl = getLocationUrl(inputCity.val());
+    weather(locationUrl);
 }
 
-var getLocationUrl=() => "http://api.openweathermap.org/geo/1.0/direct?q=" + inputCity.val() + "&limit=1&appid=d1b67a2c29e2519a2b26b7d05d8c9464";
+var getLocationUrl = (input) => { return "http://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&appid=d1b67a2c29e2519a2b26b7d05d8c9464"; }
 
 function currentWeatherRender(city, date, icon, temp, wind, humidity) { 
     var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
@@ -150,4 +87,88 @@ function createSearchResultBtn(input) {
     cityBtnContainer.appendChild(cityBtn);
 }
 
+function searchHistory() { 
+    cityArray = JSON.parse(localStorage.getItem("cityArray"));
+    input = inputCity.val();
+    var isDuplicate = false;
+    if (cityArray == null) {
+      cityArray = [];
+      saveToLocalStorage(input);
+      createSearchResultBtn(input);
+    } else {
+      console.log(789);
+      for (var i = 0; i < cityArray.length; i++) {
+        if (cityArray[i] == input) {
+          isDuplicate = true;
+        }
+      }
+      if (!isDuplicate) {
+        saveToLocalStorage(input);
+        createSearchResultBtn(input);
+      }
+    }
+}
+
+function weather(locationUrl) { 
+    fetch(locationUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var url = [];
+        lat = data[0].lat;
+        lon = data[0].lon;
+        var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +lat +"&lon=" + lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+        var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +lat +"&lon=" +lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+        url.push(currentWeatherUrl);
+        url.push(forecastWeatherUrl);
+        return url;
+      })
+      .then(function (data) {
+        fetch(data[0])
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            var city = data.name;
+            var date = currentDate;
+            var icon = data.weather[0].icon;
+            var temp = data.main.temp;
+            console.log(temp);
+            var wind = data.wind.speed;
+            var humidity = data.main.humidity;
+            currentWeatherRender(city, date, icon, temp, wind, humidity);
+          });
+        fetch(data[1])
+          .then(function (response) {
+            console.log(111);
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            fiveDaysForecastWeather.style.visibility = "visible";
+            for (var i = 0; i < 5; i++) {
+              var icon = data.list[8 * i].weather[0].icon;
+              var temp = data.list[8 * i].main.temp;
+              var wind = data.list[8 * i].wind.speed;
+              var humidity = data.list[8 * i].main.humidity;
+              forecastWeatherRender(icon, temp, wind, humidity, i);
+            }
+          });
+      });
+}
+
+function weatherBySearchHistory() { 
+    var cityBtnList = document.querySelectorAll('.city-button');
+    for (i = 0; i < cityBtnList.length;i++) { 
+    }
+}
+
 btn.addEventListener("click", render);
+searchList.addEventListener('click', function (event) { 
+    input = event.target.textContent;
+    inputCity.val(input);
+    var locationUrl = getLocationUrl(input);
+    weather(locationUrl);
+})
