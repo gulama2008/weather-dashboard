@@ -14,6 +14,7 @@ var cityArray;
 var lat;
 var lon;
 var input;
+const appid = 'appid=d1b67a2c29e2519a2b26b7d05d8c9464';
 
 //get search history cities from local storage and show with buttons when loading the page
 function renderSearchHistory() {
@@ -78,7 +79,7 @@ function saveToLocalStorage(input) {
 }
 
 //create the location url with input city name for using the geocoding api
-var getLocationUrl = (input) => { return "http://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&appid=d1b67a2c29e2519a2b26b7d05d8c9464"; }
+var getLocationUrl = (input) => { return "http://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&"+appid; }
 
 //get current and forecast weather information from weather api
 function weather(locationUrl) { 
@@ -88,8 +89,8 @@ function weather(locationUrl) {
       })
       .then(function (data) {
         var url = [];
-        var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +data[0].lat +"&lon=" + data[0].lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
-        var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +data[0].lat +"&lon=" +data[0].lon +"&appid=d1b67a2c29e2519a2b26b7d05d8c9464&units=metric";
+        var currentWeatherUrl ="https://api.openweathermap.org/data/2.5/weather?lat=" +data[0].lat +"&lon=" + data[0].lon +"&"+appid;
+        var forecastWeatherUrl ="https://api.openweathermap.org/data/2.5/forecast?lat=" +data[0].lat +"&lon=" +data[0].lon +"&"+appid;
         url.push(currentWeatherUrl);
         url.push(forecastWeatherUrl);
         return url;
