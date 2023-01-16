@@ -123,7 +123,7 @@ function weather(locationUrl) {
 function currentWeatherRender(city, date, icon, temp, wind, humidity) { 
     var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
     currentWeatherIcon.setAttribute("src", iconUrl);  
-    currentWeatherCity.textContent = city + ' (' + date + ')'+' ';
+    currentWeatherCity.textContent = city + " (" + dayjs().format("DD/MM/YYYY") + ')'+' ';
     currentWeatherTemp.textContent = "Temp: " +temp + "℃";
     currentWeatherWind.textContent = 'Wind: '+wind+' MPH';
     currentWeatherHumidity.textContent ='Humidity: '+ humidity+'%';
