@@ -79,7 +79,7 @@ function saveToLocalStorage(input) {
 }
 
 //create the location url with input city name for using the geocoding api
-var getLocationUrl = (input) => { return "http://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&"+appid; }
+var getLocationUrl = (input) => { return "https://api.openweathermap.org/geo/1.0/direct?q=" + input + "&limit=1&"+appid; }
 
 //get current and forecast weather information from weather api
 function weather(locationUrl) { 
